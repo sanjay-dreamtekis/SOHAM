@@ -24,10 +24,9 @@ public class SlaCustCommService {
         return slaCustCommRepository.findAll();
     }
 
-    public  List<SlaCustComm> getSlaCustCommById(String clientId, String customerCode) {
-        List<SlaCustComm> values=slaCustCommRepository.findBySearchWithKeys(clientId,customerCode);
-      //  System.out.println("###############################################"+values);
-        // return slaCustCommRepository.findById(new SlaCustCommId(clientId, customerCode)).orElse(null);
+    public SlaCustComm getSlaCustCommById(String clientId, String customerCode) {
+        SlaCustComm values=  slaCustCommRepository.findById(new SlaCustCommId( clientId,customerCode)).get();
+   
         return values;
     }
 
@@ -36,11 +35,23 @@ public class SlaCustCommService {
         return slaCustCommRepository.save(slaCustComm);
     }
 
-    public SlaCustComm updateSlaCustComm(String clientId, String customerCode) {
-        SlaCustComm existingSlaCustComm = slaCustCommRepository.findById(new SlaCustCommId(clientId, customerCode)).orElse(null);
-        if (existingSlaCustComm != null) {
-   
-        	return slaCustCommRepository.save(existingSlaCustComm);
+    public SlaCustComm updateSlaCustComm(String clientId, String customerCode, SlaCustComm slaCustComm) {
+        SlaCustComm existingSlaCustComm = slaCustCommRepository.findById(new SlaCustCommId(clientId, customerCode)).get();
+        if (existingSlaCustComm != null && slaCustComm != null) {
+        	
+        	if(existingSlaCustComm.getClientId().equals(slaCustComm.getClientId()) &&
+        			existingSlaCustComm.getCustomerCode().equals(slaCustComm.getCustomerCode()))
+        	{
+        		existingSlaCustComm.setClientId(slaCustComm.getClientId());
+            	existingSlaCustComm.setCommode(slaCustComm.getCommode());
+            	existingSlaCustComm.setUserId(slaCustComm.getUserId());
+            	existingSlaCustComm.setId(slaCustComm.getId());
+            	existingSlaCustComm.setCommDesc(slaCustComm.getCommDesc());
+            	existingSlaCustComm.setCustomerCode(slaCustComm.getCustomerCode());
+            	
+            	return slaCustCommRepository.save(existingSlaCustComm);
+        	}
+        	
         }
         return null;
     }

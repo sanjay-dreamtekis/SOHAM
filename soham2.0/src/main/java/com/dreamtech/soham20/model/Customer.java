@@ -18,16 +18,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
-@IdClass(CustomerId.class)
+
 @Entity
+@IdClass(CustomerKeys.class)
 @Table(name = "SLA_CUSTOMER")
+
 public class Customer implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-    @Id
+
+	@Id
     @Column(name = "CLIENTID", length = 10, nullable = false)
     private String clientId;
 
-//    @Id
+    @Id
     @Column(name = "CUSTOMERCODE", length = 30, nullable = false)
     private String customerCode;
 

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: Demo  project for spring boot
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Sanjay Reddy
+Built-By: soham
 Implementation-Vendor-Id: com.springrest
 Build-Jdk: 1.8.0_202
 Implementation-URL: https://spring.io/projects/spring-boot/springrest

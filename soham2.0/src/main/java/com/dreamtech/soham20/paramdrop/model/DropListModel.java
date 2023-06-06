@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 
 
-
 @IdClass(DropListModelKey.class)
 @Entity
 @Table(name ="[dbo].[SLAPARAMETER]")

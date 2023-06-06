@@ -20,17 +20,24 @@ public class DropDownService {
         this.repo = repo;
     }
     
-  
 
-    public List<String> getDropdownValues(String name) {
-    	 	
-    	List<String> values=repo.findByNameFiledName(name);
-    	return values;
-    }
+
     public List<DropListModel> getDropdown() {
 	 	
     	List<DropListModel> values=repo.findAll();
     	return values;
     }
+    public List<DropListModel> getDrop(String name)
+    {
+    	List<DropListModel> values=repo.findByFieldName(name);
+    	return values;
+    }
 
+    
+
+    /*public List<String> getDropdownValues(String name) {
+    	 	
+    	List<String> values=repo.findByNameFiledName(name);
+    	return values;
+    }*/
 }

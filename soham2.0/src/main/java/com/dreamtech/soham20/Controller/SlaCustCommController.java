@@ -1,6 +1,8 @@
 package com.dreamtech.soham20.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.dreamtech.soham20.model.SlaCustComm;
@@ -26,12 +28,17 @@ public class SlaCustCommController {
     }
 
     @GetMapping("/{clientId}/{customerCode}")
-    public  List<SlaCustComm> getSlaCustCommById(
+    public   ResponseEntity<SlaCustComm> getSlaCustCommById(
             @PathVariable("clientId") String clientId,
-            @PathVariable("customerCode") String customerCode) {
-    	 List<SlaCustComm> values =slaCustCommService.getSlaCustCommById(clientId, customerCode);
-    	
-        return values;
+            @PathVariable("customerCode") String customerCode
+           ) {
+    	SlaCustComm values =slaCustCommService.getSlaCustCommById(clientId, customerCode);
+    	 if (values != null) {
+             return new ResponseEntity<>(values, HttpStatus.OK);
+         } else {
+             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+         }
+     
     }
 
     @PostMapping
@@ -42,15 +49,15 @@ public class SlaCustCommController {
     @PutMapping("/{clientId}/{customerCode}")
     public SlaCustComm updateSlaCustComm(
             @PathVariable("clientId") String clientId,
-            @PathVariable("customerCode") String customerCode) {
-        return slaCustCommService.updateSlaCustComm(clientId, customerCode);
+            @PathVariable("customerCode") String customerCode,
+            @RequestBody SlaCustComm slaCustComm) {
+        return slaCustCommService.updateSlaCustComm(clientId, customerCode ,slaCustComm);
     }
 
-    @DeleteMapping("/{clientId}/{customerCode}/{commode}")
+    @DeleteMapping("/{clientId}/{customerCode}")
     public void deleteSlaCustComm(
             @PathVariable("clientId") String clientId,
-            @PathVariable("customerCode") String customerCode,
-            @PathVariable("commode") String commode) {
+            @PathVariable("customerCode") String customerCode) {
         slaCustCommService.deleteSlaCustComm(clientId, customerCode);
     }
 }

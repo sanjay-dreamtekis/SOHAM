@@ -15,7 +15,9 @@ import com.dreamtech.soham20.paramdrop.model.DropListModelKey;
 @EnableJpaRepositories
 public interface dropDownRepo extends JpaRepository<DropListModel, DropListModelKey> {
 
-	 @Query("SELECT name FROM DropListModel s WHERE FIELDNAME=?1")
-	 List<String> findByNameFiledName(String data);
+	 /*@Query("SELECT name FROM DropListModel s WHERE FIELDNAME=?1")
+	 List<String> findByNameFiledName(String data);*/
+	 
+	 List<DropListModel> findByFieldName(String Value);
 
 }

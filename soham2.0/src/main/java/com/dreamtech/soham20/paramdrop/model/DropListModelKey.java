@@ -12,11 +12,12 @@ import javax.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+
 public class DropListModelKey implements Serializable {
-    
-	  
+     
+  
 	private String CLIENTID;
-	private String fieldName;   
+	private String fieldName;
 	private String FIELDVALUE;
 	
 	 public String getCLIENTID() {

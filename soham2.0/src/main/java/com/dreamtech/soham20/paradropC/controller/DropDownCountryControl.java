@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dreamtech.soham20.paradropC.model.DropDownCountryModel;
 import com.dreamtech.soham20.paradropC.repository.DropDownCountryRepo;
 
 @RestController
@@ -16,9 +17,9 @@ public class DropDownCountryControl {
 	private DropDownCountryRepo repo;
 	
 
-	public List<String> dropdownCountry() throws IOException{
+	public List<DropDownCountryModel> dropdownCountry() throws IOException{
 		
-		List<String> country=repo.findCountryNames();
+		List<DropDownCountryModel> country=repo.findAll();
 		
 		return country;
 	}
